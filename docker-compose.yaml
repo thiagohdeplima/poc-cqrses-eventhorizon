@@ -1,0 +1,16 @@
+version: "4.0"
+
+services:
+  eventstore:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+
+  app:
+    build:
+      context: .
+    volumes:
+    - .:/srv/app
+    environment:
+      MONGODB_URL: mongodb://root:pass@eventstore
